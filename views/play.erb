@@ -1,6 +1,7 @@
-<h1> <%= @player1%> vs. <%=@player2 %></h1>
-<h2><%= @player2 %> has <%= @player2_HP %>HP</h2>
+<h1> <%= @game.player1.name %> vs. <%= @game.player2.name %></h1>
+<h2><%= @game.player2.name %> has <%= @game.player2.hitpoints %>HP</h2>
 
 <form action="/attack" method="POST">
-<button name="attack_player_2" type="submit">Attack <%= @player2 %>!</button>
+<input type="text" name='value'>
+<button name="attack_player_2" type="submit">Attack <%= @game.player2.name %>!</button>
 </form>
