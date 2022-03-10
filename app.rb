@@ -21,11 +21,12 @@ class Battle < Sinatra::Base
 
   get '/play' do
     @game = $game
+    @index = $game.next_turn_index
     erb(:play)
   end
 
   post '/attack' do
-    $game.attack($game.player2, params[:value].to_i)
+    $game.attack(params[:value].to_i)
     redirect '/play'
   end
 
