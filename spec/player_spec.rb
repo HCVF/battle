@@ -19,4 +19,13 @@ describe Player do
       expect { player1.receive_damage(10) }.to change { player1.hitpoints }.by(-10)
     end
   end
+  describe "#alive?" do
+    it "returns true if HP > 0" do
+      expect(player1.alive?).to be true
+    end
+    it "returns false if HP <= 0" do
+      player1.receive_damage(99)
+      expect(player1.alive?).to be false
+    end
+  end
 end

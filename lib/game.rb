@@ -15,6 +15,10 @@ class Game
     @turn_counter % 2
   end
 
+  def winner
+    return players[0] unless players[1].alive?
+    return players[1] unless players[0].alive?
+  end
   private
 
   def increment_turn

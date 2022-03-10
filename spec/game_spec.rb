@@ -22,8 +22,25 @@ describe Game do
     end
     it "it will return index of 0 when the first turn is complete" do
       allow(player2).to receive(:receive_damage)
-      subject.attack(player2)
+      subject.attack
       expect(subject.next_turn_index).to eq(0)
+    end
+  end
+  describe "#winner" do
+    it "returns nil if players are both alive" do
+      allow(player1).to receive(:alive?).and_return(true)
+      allow(player2).to receive(:alive?).and_return(true)
+      expect(subject.winner).to be_nil
+    end
+    it "returns player 2 if player 2 is the survivor" do
+      allow(player1).to receive(:alive?).and_return(false)
+      allow(player2).to receive(:alive?).and_return(true)
+      expect(subject.winner).to be(player2)
+    end
+    it "returns player 1 if player 1 is the survivor" do
+      allow(player1).to receive(:alive?).and_return(true)
+      allow(player2).to receive(:alive?).and_return(false)
+      expect(subject.winner).to be(player1)
     end
   end
 end

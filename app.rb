@@ -20,6 +20,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
+    redirect '/finished' if $game.winner
     @game = $game
     @index = $game.next_turn_index
     erb(:play)
@@ -28,6 +29,11 @@ class Battle < Sinatra::Base
   post '/attack' do
     $game.attack(params[:value].to_i)
     redirect '/play'
+  end
+
+  get '/finished' do
+    @winner = $game.winner
+    erb(:finished)
   end
 
   run! if app_file == $0

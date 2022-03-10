@@ -9,4 +9,8 @@ class Player
   def receive_damage(value)
     @hitpoints -= value
   end
+
+  def alive?
+    @hitpoints > 0
+  end
 end
