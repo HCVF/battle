@@ -5,6 +5,5 @@
 
 
 <form action="/attack" method="POST">
-<input type="text" name='value'>
 <button name="attack_player" type="submit"><%= @game.players[@index - 1].name %> attack <%= @game.players[@index].name %>!</button>
 </form>

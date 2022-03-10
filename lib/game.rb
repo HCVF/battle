@@ -6,8 +6,8 @@ class Game
     @turn_counter = 1
   end
 
-  def attack(damage = 30)
-    @players[next_turn_index].receive_damage(damage)
+  def attack
+    @players[next_turn_index].receive_damage(random_damage)
     increment_turn
   end
 
@@ -19,7 +19,12 @@ class Game
     return players[0] unless players[1].alive?
     return players[1] unless players[0].alive?
   end
+  
   private
+
+  def random_damage
+    rand(0..40)
+  end
 
   def increment_turn
     @turn_counter += 1

@@ -1,10 +1,9 @@
 feature "Attack player" do
   scenario "Player 1 attacks Player 2" do
+    allow_any_instance_of(Game).to receive(:random_damage).and_return(10)
     sign_in_and_play
-    fill_in(name: "value", with: "30")
     click_button(name: "attack_player")
-    fill_in(name: "value", with: "30")
     click_button(name: "attack_player")
-    expect(page).to have_text("Rob has 69HP")
+    expect(page).to have_text("Rob has 89HP")
   end
 end
