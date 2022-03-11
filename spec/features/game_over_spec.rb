@@ -8,6 +8,7 @@ feature "game over" do
   scenario "Player 1 dies" do
     sign_in_and_play
     click_button(name: "attack_player")
+    allow_any_instance_of(Game).to receive(:random_damage).and_return(99)
     click_button(name: "attack_player")
     expect(page).to have_text("GAME OVER! Rob wins")
   end

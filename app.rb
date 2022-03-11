@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/player'
-require './lib/game'
+require './lib/computer_game'
 
 class Battle < Sinatra::Base
   configure :development do
@@ -15,7 +15,13 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(Player.new(params[:player1]), Player.new(params[:player2]))
+    player2name = params[:player2]
+    if player2name == "Computer" || player2name == ""
+      player2name = "Computer"
+      $game = ComputerGame.new(Player.new(params[:player1]), Player.new(player2name))
+    else
+      $game = Game.new(Player.new(params[:player1]), Player.new(player2name))
+    end
     redirect '/play'
   end
 

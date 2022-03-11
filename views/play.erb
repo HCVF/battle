@@ -5,5 +5,9 @@
 
 
 <form action="/attack" method="POST">
+<% if @game.players[1].name == "Computer" || @game.players[1].name == "" %>
+<button name="attack_player" type="submit">Fight!</button>
+<% else %>
 <button name="attack_player" type="submit"><%= @game.players[@index - 1].name %> attack <%= @game.players[@index].name %>!</button>
+<% end %>
 </form>
